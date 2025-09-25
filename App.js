@@ -100,6 +100,25 @@ const renderTelaInicial = () => (
     </View>
 );
 
+const renderPermissao = () => (
+    <View style={[estilos.tela, { backgroundColor: '#FFFFFF' }]}>
+        <Text style={estilos.titulo}>Permitir uso do giroscópio?</Text>
+
+        <TouchableOpacity style={estilos.botao} onPress={() => defirnirPermiteSensor(true)}>
+            <Text style={estilos.textoBotao}>Permitir</Text>
+        </TouchableOpacity>
+    </View>
+);
+
+const renderPalavra = () => (
+    <View style={[estilos.tela, { backgroundColor: corFundo }]}>
+        <Text style={[estilos.palavra, { color: corTexto }]}>{palavra}</Text>
+    </View>
+);
+
+if (telaInicial) return renderTelaInicial();
+if (!permiteSensor) return renderTelaInicial();
+return renderPalavra();
 
 const estilos = StyleSheet.create({
     tela: {
