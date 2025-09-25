@@ -41,7 +41,7 @@ export default function App() {
         Gyroscope.addListener(({x,y,z}) => {
             const agora = Date.now();
 
-            //console.log(´Movimento detectado - x: ${x.toFixed(2}, y: ${y.toFixed(2)}, z: ${$.toFixed(2)}´);
+            console.log(`Movimento detectado - x: ${x.toFixed(2)}, y: ${y.toFixed(2)}, z: ${z.toFixed(2)}`);
 
             if (z < -2 && agora - ultimaTroca > 1000) {
                 ultimaTroca = agora;
@@ -84,8 +84,55 @@ export default function App() {
 //----------------------------
 // Parte V
 
-const renderTelaInicial = () => {
-    <View>
+const renderTelaInicial = () => (
+    <View style={[estilos.tela, {backgroundColor: '#FFFFFF'}]}>
 
-    </View
-};
+        <Text style={estilos.titulo}>Adivinha quem sou?</Text>
+        <Text style={estilos.instrucao}>Agite levemente o celular para trocar de palavra</Text>
+        <Text style={estilos.instrucao}>Podemos jogar de duas formas diferente:</Text>
+        <Text style={estilos.instrucao}>1. Tentar descobrir por pista, onde a pessoa passa estas pistas sem falar a palavra:</Text>
+        <Text style={estilos.instrucao}>2. Tentar descobrir por mimicas, onde a pessoa irá imitar ou demonstrar sem falar a palavra:</Text>
+        <Text style={estilos.inscricao}>O limite de tentativas ou tempo é definido pelos jogadores com um acordo. Divirtam-se!</Text>
+
+        <TouchableOpacity style={estilos.botao} onPress={() => definirTelaInicial(false)}>
+            <Text style={estilos.textoBotao}>Continuar</Text>
+        </TouchableOpacity>
+    </View>
+);
+
+
+const estilos = StyleSheet.create({
+    tela: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 20
+    },
+    palavra: {
+        fontSize: 80,
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    titulo: {
+        fontSize: 36,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center'
+    },
+    instrucao: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginBottom: 30
+    },
+    botao: {
+        backgroundColor: '#007AFF',
+        paddingVertical: 12,
+        paddingHorizontal: 24,
+        borderRadius: 8,
+    },
+    textoBotao: {
+        color: '#FFFFFF',
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+});
