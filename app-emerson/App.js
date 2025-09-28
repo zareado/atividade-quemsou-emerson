@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Gyroscope } from 'expo-sensors';
 import { Audio } from 'expo-av';  // <-- Importa o Audio
-import alimentos from './alimento.json';
-import lugares from './lugares.json'
-import objetos from './objetos.json'
-import animais from './animais.json'
+import alimentos from './src/data/alimento.json';
+import lugares from './src/data/lugares.json'
+import objetos from './src/data/objetos.json'
+import animais from './src/data/animais.json'
+import palavras from './src/data/palavras.json';
 
 // Função para sortear cor diferente da atual
 const obterCorAleatoria = (corAtual) => {
