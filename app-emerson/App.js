@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Gyroscope } from 'expo-sensors';
-import { Audio } from 'expo-av';  // <-- Importa o Audio
+//import { Audio } from 'expo-av';  // <-- Importa o Audio
 import alimentos from './src/data/alimento.json';
 import lugares from './src/data/lugares.json'
 import objetos from './src/data/objetos.json'
 import animais from './src/data/animais.json'
 import palavras from './src/data/palavras.json';
 
+import obterCorAleatoria from './src/utils/obterCorAleatoria';
+import { loadSounds, tocarSomAcerto, tocarSomPulo, unloadSounds } from './src/utils/gerenciaSons';
+
 // Função para sortear cor diferente da atual
-const obterCorAleatoria = (corAtual) => {
-    const cores = [
-        '#FF5733', '#33FF57', '#3357FF', '#FF8C00',
-        '#FF33F6', '#006400', '#008080', '#0000CD', '#4B0082'
-    ];
-    const outrasCores = cores.filter(cor => cor !== corAtual);
-    return outrasCores[Math.floor(Math.random() * outrasCores.length)];
-};
+
+// const obterCorAleatoria = (corAtual) => {
+//     const cores = [
+//         '#FF5733', '#33FF57', '#3357FF', '#FF8C00',
+//         '#FF33F6', '#006400', '#008080', '#0000CD', '#4B0082'
+//     ];
+//     const outrasCores = cores.filter(cor => cor !== corAtual);
+//     return outrasCores[Math.floor(Math.random() * outrasCores.length)];
+// };
 
 export default function App() {
     const [palavra, definirPalavra] = useState('');
@@ -32,30 +36,40 @@ export default function App() {
     const [sentidoUltimaRotacao, setSentidoUltimaRotacao] = useState(null);
 
     // Estados para sons
-    const [acertoSound, setAcertoSound] = useState(null);
-    const [puloSound, setPuloSound] = useState(null);
+    // const [acertoSound, setAcertoSound] = useState(null);
+    // const [puloSound, setPuloSound] = useState(null);
 
     // Carregar os sons
-    useEffect(() => {
-        async function carregarSons() {
-            const { sound: acerto } = await Audio.Sound.createAsync(
-                require('./assets/correct-sound.mp3')  // <-- coloque o caminho correto aqui
-            );
-            const { sound: pulo } = await Audio.Sound.createAsync(
-                require('./assets/wrong-sound.mp3')  // <-- coloque o caminho correto aqui
-            );
-            setAcertoSound(acerto);
-            setPuloSound(pulo);
-        }
-        carregarSons();
+    // useEffect(() => {
+    //     async function carregarSons() {
+    //         const { sound: acerto } = await Audio.Sound.createAsync(
+    //             require('./assets/correct-sound.mp3')  // <-- coloque o caminho correto aqui
+    //         );
+    //         const { sound: pulo } = await Audio.Sound.createAsync(
+    //             require('./assets/wrong-sound.mp3')  // <-- coloque o caminho correto aqui
+    //         );
+    //         setAcertoSound(acerto);
+    //         setPuloSound(pulo);
+    //     }
+    //     carregarSons();
 
-        // Descarregar sons quando o componente desmontar
+    //     // Descarregar sons quando o componente desmontar
+    //     return () => {
+    //         if (acertoSound) acertoSound.unloadAsync();
+    //         if (puloSound) puloSound.unloadAsync();
+    //     };
+    // }, []);
+
+    // Usar a função de gerência de sons
+    useEffect(() => {
+        loadSounds();
         return () => {
-            if (acertoSound) acertoSound.unloadAsync();
-            if (puloSound) puloSound.unloadAsync();
+            unloadSounds();
         };
     }, []);
 
+
+    
     useEffect(() => {
         if (permiteSensor && timerAtivo) {
             sortearPalavra();
