@@ -6,7 +6,7 @@ export default function SelecionarTema({ navigation }) {
         <View style={styles.container}>
             <Text style={styles.title}>Selecione um tema!</Text>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Game', {tema: 'geral'})}>//navigaation.navigate('Game'))
+            <TouchableOpacity style={styles.button} onPress={() => navigation.replace('Game', {tema: 'teste'})}>//navigaation.navigate('Game'))
                 <Text style={styles.buttonText}>Geral</Text>
             </TouchableOpacity>
 
