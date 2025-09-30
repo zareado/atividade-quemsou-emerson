@@ -42,8 +42,6 @@ export default function GameScreen() {
                 break;
             case 'animais':
                 setListaPalavras(animais);
-            case 'teste':
-                setListaPalavras(teste)
                 break;
             default:
                 setListaPalavras(palavras);
