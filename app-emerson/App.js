@@ -21,6 +21,8 @@ import TelaInicial from './src/screens/TelaInicial';
 import TelaPermissao from './src/screens/TelaPermissao'
 import { StackScreen } from 'react-native-screens';
 import SelecionarTema from './src/screens/SelecionarTema';
+import LogoEles from './src/screens/LogoEles';
+import Instrucoes from './src/screens/Instrucoes'
 
 // Função para sortear cor diferente da atual
 
@@ -45,6 +47,8 @@ const Stack = createStackNavigator();
                 <Stack.Screen name="Game" component={TelaJogo} />
                 <Stack.Screen name="End" component={TelaFinal} />
                 <Stack.Screen name="SelectTheme" component={SelecionarTema}/>
+                <Stack.Screen name="LogoEles" component={LogoEles}/>
+                <Stack.Screen name="Instrucoes" component={Instrucoes}/>
             </Stack.Navigator>
         </NavigationContainer>
     );    
@@ -105,7 +109,7 @@ const Stack = createStackNavigator();
 //             const timer = setInterval(() => {
 //                 setTempoRestante((tempo) => {
 //                     if (tempo <= 1) {
-//                         clearInterval(timer);
+//                         clearInterval(timer);LogoEles
 //                         finalizarJogo();
 //                         return 0;
 //                     }
@@ -258,7 +262,7 @@ const Stack = createStackNavigator();
 //             </View>
 //         );
 //     }
-// }
+// }LogoEles
 
 // const estilos = StyleSheet.create({
 //     tela: {
